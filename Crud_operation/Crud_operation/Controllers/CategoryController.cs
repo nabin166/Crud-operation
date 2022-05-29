@@ -62,13 +62,13 @@ namespace Crud_operation.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult  Edit(int? Id,string namess, int displayss)
         {
-            Category catgory = new Category();   
-           
+            var category = _context.Categories.Find(Id);
 
-         //   catgory.Name = namess;
-           // catgory.DisplayOrder = displayss;
 
-            _context.Update(catgory);
+             category.Name = namess;
+             category.DisplayOrder = displayss;
+
+            _context.Update(category);
             _context.SaveChanges();
             return RedirectToAction("Index");
             
